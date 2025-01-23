@@ -31,3 +31,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate.format_sql: true
+  messages:
+    basename: message/messageResource
+    encoding: UTF-8
+

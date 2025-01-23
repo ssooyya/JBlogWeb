@@ -31,9 +31,20 @@ let userObject = {
 			// 응답으로 들어온 JSON 데이터를 response로 받는다.
 		}).done(function(response) {
 			// 응답 메세지를 콘솔에 출력하고 메인 페이지로 이동
-			console.log(response);
-			location = "/";
-			// 에러 발생시 error로 에러 정보를 받는다
+			let statys = response["status"];
+			if(status == 200){
+				let message = response["data"];
+				alert(message);
+				location = "/";
+			} else {
+				let warn = "";
+				let errors = response["data"];
+				if(errors.username != null) warn = warn + errors.username + "\n";
+				if(errors.password != null) warn = warn + errors.password + "\n";
+				if(errors.email != null) warn = warn + errors.email + "\n";
+				alert(warn);
+			}
+		// 에러 발생시 error로 에러 정보를 받는다
 		}).fail(function(error) {
 			// 에러 메세지를 알림창에 출력
 			alert("에러 발생 : " + error)
